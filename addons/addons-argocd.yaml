@@ -18,7 +18,7 @@ spec:
     dex: {}
     server:  
       config:
-        url: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
+        url: https://github.com/its-software-services-devops/promrub-argocd-apps.git
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -31,8 +31,8 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
-    targetRevision: 'production' #Should be based on environment
+    repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
+    targetRevision: 'development' #Should be based on environment
     path: 'applications'
 
   # Destination cluster and namespace to deploy the application
@@ -54,7 +54,7 @@ metadata:
     custom: "true"
 type: Opaque
 stringData:
-  name: production
+  name: development
   server: https://notused
   config: ""
 ---
@@ -67,7 +67,7 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 type: Opaque    
 stringData:
-  url: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
+  url: https://github.com/its-software-services-devops/promrub-argocd-apps.git
   #username: dummy-gh
   #password: 'notused-because-it-is-public'
   type: git
