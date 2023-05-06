@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: argocd
+  namespace: kube-system
+spec:
+  repo: https://argoproj.github.io/argo-helm
+  chart: argo-cd
+  version: 4.9.7
+  targetNamespace: argocd
+  valuesContent: |-
+    fullnameOverride: argocd
+    dex: {}
+    server:  
+      config:
+        url: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap-app
+  namespace: argocd
+spec:
+  # The project the application belongs to.
+  project: default
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
+    targetRevision: 'production' #Should be based on environment
+    path: 'applications'
+
+  # Destination cluster and namespace to deploy the application
+  destination:
+    name: in-cluster
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: false
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: local-cluster-secret
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+    custom: "true"
+type: Opaque
+stringData:
+  name: production
+  server: https://notused
+  config: ""
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-auth-secret
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+type: Opaque    
+stringData:
+  url: https://github.com/its-software-services-devops/k3s-argocd-demo-apps.git
+  #username: dummy-gh
+  #password: 'notused-because-it-is-public'
+  type: git
