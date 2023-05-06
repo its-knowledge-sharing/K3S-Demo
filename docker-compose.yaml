@@ -24,7 +24,7 @@ services:
       - k3s-server:/var/lib/rancher/k3s
     ports:
     - 6443:6443
-    - 443:32565
+    - 443:31004
     logging:
       driver: "json-file"
       options: 
