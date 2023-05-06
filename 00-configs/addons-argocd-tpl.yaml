@@ -32,7 +32,7 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
-    targetRevision: 'development' #Should be based on environment
+    targetRevision: '<<ENV>>' #Should be based on environment
     path: 'applications'
 
   # Destination cluster and namespace to deploy the application
@@ -54,7 +54,7 @@ metadata:
     custom: "true"
 type: Opaque
 stringData:
-  name: development
+  name: <<ENV>>
   server: https://notused
   config: ""
 ---
