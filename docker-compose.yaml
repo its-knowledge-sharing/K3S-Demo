@@ -25,7 +25,7 @@ services:
     ports:
     - 6443:6443
     - 443:32443
-    - 80:32080
+    - 80:32080 # For Let's Encrypt 
     logging:
       driver: "json-file"
       options: 
