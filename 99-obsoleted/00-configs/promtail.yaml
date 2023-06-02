@@ -1,0 +1,47 @@
+server:
+  log_level: info
+  http_listen_port: 3101
+
+clients:
+  - url: https://${REMOTE_LOKI_USER}:${REMOTE_LOKI_PASSWORD}@${REMOTE_LOKI_HOST}/api/prom/push
+
+positions:
+  filename: /tmp/position/positions.yaml
+
+scrape_configs:
+  - job_name: containers
+    static_configs:
+    - targets:
+      - localhost
+      labels:
+        job: containerlogs
+        __path__: /var/lib/docker/containers/*/*log
+
+    pipeline_stages:
+    - static_labels:
+        device_id: ${DEVICE_ID}
+        category: container
+    - json:
+        expressions:
+          output: log
+          stream: stream
+          attrs:
+    - json:
+        expressions:
+          tag:
+        source: attrs
+    - regex:
+        expression: (?P<image_name>(?:[^|]*[^|])).(?P<container_name>(?:[^|]*[^|])).(?P<image_id>(?:[^|]*[^|])).(?P<container_id>(?:[^|]*[^|]))
+        source: tag
+    - timestamp:
+        format: RFC3339Nano
+        source: time
+    - labels:
+        tag:
+        stream:
+        image_name:
+        container_name:
+        image_id:
+        container_id:
+    - output:
+        source: output
