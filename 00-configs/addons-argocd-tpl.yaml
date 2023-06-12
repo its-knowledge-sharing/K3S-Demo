@@ -71,3 +71,17 @@ stringData:
   #username: dummy-gh
   #password: 'notused-because-it-is-public'
   type: git
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-auth-secret-promrub
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+type: Opaque    
+stringData:
+  url: https://github.com/PROMRUB/PROMRUB-deployment.git
+  #username: dummy-gh
+  #password: 'notused-because-it-is-public'
+  type: git
