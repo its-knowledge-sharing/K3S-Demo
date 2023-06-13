@@ -39,4 +39,7 @@ CFG_FILE=konga-nodes.cfg
 cp ${SRC_FILE} ${CFG_FILE}
 echo "  KONGA_NODES_CONFIG: $(cat "${CFG_FILE}" | base64 -w0)" >> ${TMP_FILE}
 
+KEY_FILE=.gar-sa.json
+echo "  GAR_PASSWORD: $(cat "${KEY_FILE}" | base64 -w0)" >> ${TMP_FILE}
+
 cp ${TMP_FILE} ${DST_FILE}
