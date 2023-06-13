@@ -43,6 +43,7 @@ services:
     privileged: true
     volumes:
       - k3s-agent:/etc/rancher/node
+      - ${STORAGE_DIR}:/var/lib/rancher/k3s/storage
     environment:
     - K3S_URL=https://server:6443
     - K3S_TOKEN=secret
