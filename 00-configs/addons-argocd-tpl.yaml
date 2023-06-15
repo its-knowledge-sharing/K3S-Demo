@@ -91,6 +91,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus-crds
+  namespace: argocd
 spec:
   destination:
     name: in-cluster
