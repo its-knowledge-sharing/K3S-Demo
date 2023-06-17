@@ -81,7 +81,7 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 type: Opaque    
 stringData:
-  url: https://github.com/PROMRUB/PROMRUB-deployment.git
+  url: https://github.com/PROMDevOps/PROMRUB-Deployment.git
   #username: dummy-gh
   #password: 'notused-because-it-is-public'
   type: git
