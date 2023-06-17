@@ -18,7 +18,7 @@ spec:
     dex: {}
     server:  
       config:
-        url: https://github.com/its-software-services-devops/promrub-argocd-apps.git
+        url: https://github.com/PROMDevOps/PROM-K3S-Addons.git
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -31,7 +31,7 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: https://github.com/its-software-services-devops/promrub-argocd-apps.git
+    repoURL: https://github.com/PROMDevOps/PROM-K3S-Addons.git
     targetRevision: '<<ENV>>' #Should be based on environment
     path: 'applications'
 
@@ -67,7 +67,7 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 type: Opaque    
 stringData:
-  url: https://github.com/its-software-services-devops/promrub-argocd-apps.git
+  url: https://github.com/PROMDevOps/PROM-K3S-Addons.git
   #username: dummy-gh
   #password: 'notused-because-it-is-public'
   type: git
