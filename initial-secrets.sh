@@ -42,7 +42,10 @@ echo "  KONGA_NODES_CONFIG: $(cat "${CFG_FILE}" | base64 -w0)" >> ${TMP_FILE}
 KEY_FILE=.gar-sa.json
 echo "  GAR_PASSWORD: $(cat "${KEY_FILE}" | base64 -w0)" >> ${TMP_FILE}
 
-SETTING_FILE=.appsetting.json
+SETTING_FILE=.appsetting-promrub-scb.json
 echo "  APP_SETTING_SCB: $(cat "${SETTING_FILE}" | base64 -w0)" >> ${TMP_FILE}
+
+SETTING_FILE=.appsetting-promjodd-carpark.json
+echo "  APP_SETTING_CARPARK_API: $(cat "${SETTING_FILE}" | base64 -w0)" >> ${TMP_FILE}
 
 cp ${TMP_FILE} ${DST_FILE}
