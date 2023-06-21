@@ -18,8 +18,9 @@ cat ${SRC_FILE} | while read line
 do
   regex="^(.+?)=(.+)$"
   if [[ $line =~ $regex ]]; then
-    KEY=${BASH_REMATCH[1]}
-    VALUE=${BASH_REMATCH[2]}
+
+    KEY=$(echo -e "$line" | perl -0777 -ne 'print $1 if /^(.+?)=(.+)$/')
+    VALUE=$(echo -e "$line" | perl -0777 -ne 'print $2 if /^(.+?)=(.+)$/')
 
     echo "  ${KEY}: $(echo -n "${VALUE}" | base64 -w0)" >> ${TMP_FILE}
   fi
