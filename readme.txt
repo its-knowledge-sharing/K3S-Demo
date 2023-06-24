@@ -4,3 +4,6 @@
 
 2. Install docker-compose
 - sudo apt install docker-compose
+
+3. Install kubectl
+- sudo snap install kubectl --classic
