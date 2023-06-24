@@ -18,7 +18,7 @@ spec:
     dex: {}
     server:  
       config:
-        url: https://github.com/PROMDevOps/PROM-K3S-Addons.git
+        url: https://github.com/its-knowledge-sharing/K3S-Demo-Addons.git
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -31,7 +31,7 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: https://github.com/PROMDevOps/PROM-K3S-Addons.git
+    repoURL: https://github.com/its-knowledge-sharing/K3S-Demo-Addons.git
     targetRevision: '<<ENV>>' #Should be based on environment
     path: 'applications'
 
@@ -67,35 +67,7 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 type: Opaque    
 stringData:
-  url: https://github.com/PROMDevOps/PROM-K3S-Addons.git
-  #username: dummy-gh
-  #password: 'notused-because-it-is-public'
-  type: git
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: github-auth-secret-promrub
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-type: Opaque    
-stringData:
-  url: https://github.com/PROMDevOps/PROMRUB-Deployment.git
-  #username: dummy-gh
-  #password: 'notused-because-it-is-public'
-  type: git
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: github-auth-secret-promjodd
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-type: Opaque    
-stringData:
-  url: https://github.com/PROMDevOps/PROMJODD-Deployment.git
+  url: https://github.com/its-knowledge-sharing/K3S-Demo-Addons.git
   #username: dummy-gh
   #password: 'notused-because-it-is-public'
   type: git
